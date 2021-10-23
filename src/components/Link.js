@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function Link({ Linktext, Link, ImageURL }) {
+function Link({ Linktext, Link, ImageURL, alt }) {
   const [hover, setHover] = useState();
 
   useEffect(() => {
@@ -17,7 +17,7 @@ function Link({ Linktext, Link, ImageURL }) {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <img src={ImageURL} style={image} />
+      <img src={ImageURL} style={image} alt={alt} />
       <h3 style={text} id={Linktext}>
         {Linktext}
       </h3>
@@ -51,12 +51,14 @@ const image = {
 };
 
 const text = {
+  maxHeight: "70px",
   flex: 1,
   flexGrow: 1,
   fontSize: "25px",
   color: "black",
   textAlign: "center",
   paddingRight: "8px",
+  overflow: "hidden",
 };
 
 export default Link;

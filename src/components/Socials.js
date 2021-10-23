@@ -29,6 +29,7 @@ function Socials() {
       <a
         href="https://www.facebook.com/GoodrickeCollege/"
         target="_blank"
+        rel="noreferrer"
         onMouseEnter={() => setFBHover(true)}
         onMouseLeave={() => setFBHover(false)}
       >
@@ -37,6 +38,7 @@ function Socials() {
       <a
         href="https://www.instagram.com/goodrickecollege/"
         target="_blank"
+        rel="noreferrer"
         onMouseEnter={() => setIHover(true)}
         onMouseLeave={() => setIHover(false)}
       >
@@ -45,6 +47,7 @@ function Socials() {
       <a
         href="https://twitter.com/goodrickeyork"
         target="_blank"
+        rel="noreferrer"
         onMouseEnter={() => setTHover(true)}
         onMouseLeave={() => setTHover(false)}
       >
