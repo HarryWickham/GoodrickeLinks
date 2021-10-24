@@ -1,12 +1,15 @@
 import React from "react";
 
 import Socials from "./components/Socials";
+import Event from "./components/Event";
 import GetLinks from "./GetLinks";
+import GetEvents from "./GetEvents";
 
 function App() {
   return (
     <div style={holder}>
       <div style={center_container}>
+        <GetEvents style={{ alignItems: "center", display: "flex" }} />
         <div style={link_holder}>
           <GetLinks />
         </div>
