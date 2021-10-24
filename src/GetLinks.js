@@ -1,23 +1,55 @@
-import React from "react";
+import React, { Component } from "react";
 import Link from "./components/Link";
 
-function GetLinks() {
+export class GetLinks extends Component {
+  async componentDidMount() {
+    try {
+      const data = await loadData();
+      this.setState({ data });
+      console.log(this.state.data);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  render() {
+    if (this.state != null) {
+      return linkCards(this.state.data);
+    } else {
+      return <div>Please Wait</div>;
+    }
+  }
+}
+
+function linkCards(data) {
   return (
-    <div>
-      <Link
-        Linktext="Lots and lots of text that wouldnt really ever be there"
-        Link=""
-        ImageURL="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F437969157326254081%2FKHXl64x5.png&f=1&nofb=1"
-        alt=""
-      />
-      <Link
-        Linktext="a little bit of text"
-        Link=""
-        ImageURL="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F437969157326254081%2FKHXl64x5.png&f=1&nofb=1"
-        alt=""
-      />
-    </div>
+    <>
+      {data.Links.map((element) => {
+        return (
+          <Link
+            key={element.Linktext}
+            Linktext={element.Linktext}
+            Link={element.Link}
+            ImageURL={element.ImageURL}
+            alt={element.alt}
+          />
+        );
+      })}
+    </>
   );
+}
+
+async function loadData() {
+  try {
+    const result = await fetch(
+      "https://raw.githubusercontent.com/HarryWickham/goodrickelinks/master/src/LinkData.json?token=AMJCEBFGMGTCEDLSTMND6QLBP2ELS"
+    );
+    const data = await result.json();
+    return data;
+  } catch (e) {
+    console.warn(e);
+  }
+  throw new Error();
 }
 
 export default GetLinks;
