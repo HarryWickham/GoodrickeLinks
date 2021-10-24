@@ -14,15 +14,17 @@ function Event(eventData) {
         <img
           src={eventData.eventData.events[0].image.url}
           height="auto"
-          width="190xp"
-          style={{ margin: "8px" }}
+          width="250xp"
+          style={{ paddingBottom: "8px" }}
         />
         <div
           style={{
             display: "flex",
             flexDirection: "column",
             overflow: "hidden",
+            textOverflow: "ellipsis",
             maxHeight: "200px",
+            margin: "8px",
           }}
         >
           <div style={{ fontSize: 20 }}>
@@ -67,10 +69,10 @@ function useWindowSize() {
 const eventHolder = {
   display: "flex",
   flexShrink: 1,
-  flexDirection: "row",
-  height: "200px",
+  flexDirection: "column",
+  height: "auto",
   width: "90%",
-  maxWidth: "800px",
+  maxWidth: "500px",
   border: "1px",
   borderStyle: "solid",
   borderColor: "grey",
