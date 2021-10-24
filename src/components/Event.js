@@ -1,42 +1,61 @@
-import React, { useState, useLayoutEffect } from "react";
+import React from "react";
 
 function Event(eventData) {
-  const [width, height] = useWindowSize();
-  return (
-    <div
-      style={{
-        alignItems: "center",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <div style={eventHolder}>
-        <img
-          src={eventData.eventData.events[0].image.url}
-          height="auto"
-          width="250xp"
-          style={{ paddingBottom: "8px" }}
-        />
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            maxHeight: "200px",
-            margin: "8px",
-          }}
-        >
-          <div style={{ fontSize: 20 }}>
-            {decodeHTMLEntities(eventData.eventData.events[0].title)}
-          </div>
-          <div style={{ fontSize: 15 }}>
-            {decodeHTMLEntities(eventData.eventData.events[0].description)}
+  if (eventData.eventData.id != null) {
+    return (
+      <div
+        style={{
+          alignItems: "center",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <div style={eventHolder}>
+          <img
+            src={eventData.eventData.image.url}
+            height="auto"
+            width="250xp"
+            style={{ paddingBlock: "4px" }}
+          />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              maxHeight: "200px",
+              margin: "8px",
+            }}
+          >
+            <div style={{ fontSize: 20 }}>
+              {decodeHTMLEntities(eventData.eventData.title)}
+            </div>
+            <div
+              style={{ fontSize: 15, maxHeight: "74px", lineHeight: "18px" }}
+            >
+              {decodeHTMLEntities(eventData.eventData.description)}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div
+        style={{
+          alignItems: "center",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <div style={eventHolder}>
+          <h2 style={{ textAlign: "center" }}>
+            Sadly there are no events within the next 7 days
+          </h2>
+        </div>
+      </div>
+    );
+  }
 }
 
 var element = document.createElement("div");
@@ -51,19 +70,6 @@ function decodeHTMLEntities(str) {
   }
 
   return str;
-}
-
-function useWindowSize() {
-  const [size, setSize] = useState([0, 0]);
-  useLayoutEffect(() => {
-    function updateSize() {
-      setSize([window.innerWidth, window.innerHeight]);
-    }
-    window.addEventListener("resize", updateSize);
-    updateSize();
-    return () => window.removeEventListener("resize", updateSize);
-  }, []);
-  return size;
 }
 
 const eventHolder = {

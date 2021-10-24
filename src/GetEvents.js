@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Event from "./components/Event";
+import Carousel from "react-material-ui-carousel";
 
 export class GetEvents extends Component {
   async componentDidMount() {
@@ -21,10 +22,13 @@ export class GetEvents extends Component {
 }
 
 function linkCards(data) {
+  //https://github.com/Learus/react-material-ui-carousel
   return (
-    <>
-      <Event eventData={data} />
-    </>
+    <Carousel autoPlay={false}>
+      {data.events.map((element) => {
+        return <Event eventData={element} />;
+      })}
+    </Carousel>
   );
 }
 
@@ -36,7 +40,7 @@ function dateToday() {
 async function loadData() {
   try {
     const result = await fetch(
-      "https://www.goodricke.co.uk/wp-json/tribe/events/v1/events/?page=1&per_page=1&start_date=" +
+      "https://www.goodricke.co.uk/wp-json/tribe/events/v1/events/?page=1&per_page=5&start_date=" +
         dateToday()
     );
     const data = await result.json();
