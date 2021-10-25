@@ -42,7 +42,7 @@ function linkCards(data) {
 async function loadData() {
   try {
     const result = await fetch(
-      "https://www.goodricke.co.uk/wp-content/uploads/LinkData.json"
+      "https://raw.githubusercontent.com/HarryWickham/goodrickelinks/master/src/LinkData.json?token=AMJCEBFGMGTCEDLSTMND6QLBP2ELS"
     );
     const data = await result.json();
     return data;
