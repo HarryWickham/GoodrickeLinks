@@ -6,7 +6,6 @@ export class GetLinks extends Component {
     try {
       const data = await loadData();
       this.setState({ data });
-      console.log(this.state.data);
     } catch (e) {
       console.log(e);
     }
@@ -16,7 +15,7 @@ export class GetLinks extends Component {
     if (this.state != null) {
       return linkCards(this.state.data);
     } else {
-      return <div>Please Wait</div>;
+      return <div style={eventHolder}>Please Wait...</div>;
     }
   }
 }
@@ -51,5 +50,26 @@ async function loadData() {
   }
   throw new Error();
 }
+
+const eventHolder = {
+  display: "flex",
+  flexShrink: 1,
+  flexDirection: "column",
+  height: "auto",
+  width: "90%",
+  maxWidth: "500px",
+  border: "1px",
+  borderStyle: "solid",
+  borderColor: "grey",
+  alignItems: "center",
+  textDecoration: "none",
+  boxShadow: "3px 3px 2px #9E9E9E",
+  borderRadius: "4px",
+  marginTop: "8px",
+  padding: "8px",
+  background: "white",
+  color: "black",
+  textAlign: "center",
+};
 
 export default GetLinks;

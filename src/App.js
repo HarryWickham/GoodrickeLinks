@@ -37,6 +37,7 @@ const link_holder = {
 
 const center_container = {
   justifyContent: "space-between",
+  alignItems: "center",
   flexGrow: 1,
   flexDirection: "column",
   display: "flex",

@@ -14,9 +14,17 @@ export class GetEvents extends Component {
 
   render() {
     if (this.state != null) {
-      return linkCards(this.state.data);
+      if (this.state.data.total > 0) {
+        return linkCards(this.state.data);
+      } else {
+        return (
+          <div style={eventHolder}>
+            Sorry there are no events within the next 7 days
+          </div>
+        );
+      }
     } else {
-      return <div>Please Wait</div>;
+      return <div style={eventHolder}>Please Wait...</div>;
     }
   }
 }
@@ -24,9 +32,9 @@ export class GetEvents extends Component {
 function linkCards(data) {
   //https://github.com/Learus/react-material-ui-carousel
   return (
-    <Carousel autoPlay={false}>
+    <Carousel autoPlay={false} animation="slide">
       {data.events.map((element) => {
-        return <Event eventData={element} />;
+        return <Event eventData={element} key={element.title} />;
       })}
     </Carousel>
   );
@@ -34,7 +42,9 @@ function linkCards(data) {
 
 function dateToday() {
   const now = new Date();
-  return now.getFullYear() - 1 + "-" + now.getMonth() + "-" + now.getDate();
+  return (
+    now.getFullYear() - 1 + "-" + (now.getMonth() + 1) + "-" + now.getDate()
+  );
 }
 
 async function loadData() {
@@ -50,5 +60,26 @@ async function loadData() {
   }
   throw new Error();
 }
+
+const eventHolder = {
+  display: "flex",
+  flexShrink: 1,
+  flexDirection: "column",
+  height: "auto",
+  width: "90%",
+  maxWidth: "500px",
+  border: "1px",
+  borderStyle: "solid",
+  borderColor: "grey",
+  alignItems: "center",
+  textDecoration: "none",
+  boxShadow: "3px 3px 2px #9E9E9E",
+  borderRadius: "4px",
+  marginTop: "8px",
+  padding: "8px",
+  background: "white",
+  color: "black",
+  textAlign: "center",
+};
 
 export default GetEvents;
