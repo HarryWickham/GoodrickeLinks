@@ -1,7 +1,6 @@
 import React from "react";
 
 import Socials from "./components/Socials";
-import Event from "./components/Event";
 import GetLinks from "./GetLinks";
 import GetEvents from "./GetEvents";
 

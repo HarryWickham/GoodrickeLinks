@@ -19,7 +19,7 @@ export class GetEvents extends Component {
       } else {
         return (
           <div style={eventHolder}>
-            Sorry there are no events within the next 7 days
+            Sorry there are no CSA events within the next 7 days
           </div>
         );
       }
@@ -50,7 +50,7 @@ function dateToday() {
 async function loadData() {
   try {
     const result = await fetch(
-      "https://www.goodricke.co.uk/wp-json/tribe/events/v1/events/?page=1&per_page=5&start_date=" +
+      "https://www.goodricke.co.uk/wp-json/tribe/events/v1/events/?page=1&per_page=15&start_date=" +
         dateToday()
     );
     const data = await result.json();
