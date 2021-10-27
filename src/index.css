@@ -12,6 +12,9 @@ code {
     monospace;
 }
 
-.Carousel-root-1 .jss1 {
+.Carousel-root-1 {
+  width: 100% !important;
+}
+.jss1 {
   width: 100% !important;
 }
