@@ -13,17 +13,21 @@ function Event(eventData) {
         }}
       >
         <a style={eventHolder} href={eventData.eventData.url}>
-          
-            <img
-              alt=""
-              src={
-                eventData.eventData.image.url != null
-                  ? eventData.eventData.image.url
-                  : "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F437969157326254081%2FKHXl64x5.png&f=1&nofb=1"
-              }
-              style={{ margin: "4px", width: "95%", height: "250px", objectFit: "scale-down" }}
-            />
-          
+          <img
+            alt=""
+            src={
+              eventData.eventData.image.url != null
+                ? eventData.eventData.image.url
+                : "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F437969157326254081%2FKHXl64x5.png&f=1&nofb=1"
+            }
+            style={{
+              margin: "4px",
+              width: "95%",
+              height: "250px",
+              objectFit: "scale-down",
+            }}
+          />
+
           <div
             style={{
               display: "flex",
@@ -61,6 +65,7 @@ function Event(eventData) {
                 fontSize: 17,
                 fontWeight: "bold",
                 textAlign: "center",
+                overflowWrap: "anywhere",
               }}
             >
               <a href={eventData.eventData.website}>
