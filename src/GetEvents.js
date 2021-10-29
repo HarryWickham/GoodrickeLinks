@@ -32,7 +32,7 @@ export class GetEvents extends Component {
 function linkCards(data) {
   //https://github.com/Learus/react-material-ui-carousel
   return (
-    <Carousel autoPlay={false} animation="slide">
+    <Carousel autoPlay={false} animation="slide" style={{ width: "100%" }}>
       {data.events.map((element) => {
         return <Event eventData={element} key={element.title} />;
       })}
@@ -42,15 +42,13 @@ function linkCards(data) {
 
 function dateToday() {
   const now = new Date();
-  return (
-    now.getFullYear() - 1 + "-" + (now.getMonth() + 1) + "-" + now.getDate()
-  );
+  return now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
 }
 
 async function loadData() {
   try {
     const result = await fetch(
-      "https://www.goodricke.co.uk/wp-json/tribe/events/v1/events/?page=1&per_page=15&start_date=" +
+      "https://www.goodricke.co.uk/wp-json/tribe/events/v1/events/?page=1&per_page=5&start_date=" +
         dateToday()
     );
     const data = await result.json();
