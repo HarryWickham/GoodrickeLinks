@@ -136,7 +136,7 @@ function dateInfo(eD) {
         "/" +
         eD.start_date_details.month +
         "/" +
-        eD.start_date_details.day
+        eD.start_date_details.year
       );
     }
   }
@@ -171,7 +171,7 @@ function dateInfo(eD) {
       "/" +
       eD.start_date_details.month +
       "/" +
-      eD.start_date_details.day +
+      eD.start_date_details.year +
       " " +
       eD.start_date_details.hour +
       ":" +
@@ -187,7 +187,7 @@ function dateInfo(eD) {
       "/" +
       eD.start_date_details.month +
       "/" +
-      eD.start_date_details.day +
+      eD.start_date_details.year +
       " " +
       eD.start_date_details.hour +
       ":" +
@@ -197,7 +197,7 @@ function dateInfo(eD) {
       "/" +
       eD.end_date_details.month +
       "/" +
-      eD.end_date_details.day +
+      eD.end_date_details.year +
       " " +
       eD.end_date_details.hour +
       ":" +
