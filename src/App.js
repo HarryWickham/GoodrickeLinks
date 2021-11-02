@@ -14,6 +14,24 @@ function App() {
         </div>
         <Socials style={{ alignSelf: "end" }} />
       </div>
+      <p style={{ textAlign: "center", margin: "2px" }}>
+        <b>
+          Designed, Developed and Maintained by{" "}
+          <a
+            style={{ color: "#1f6f2e", textDecoration: "none" }}
+            href="mailto:hew550@york.ac.uk"
+          >
+            Harry Wickham
+          </a>{" "}
+          @{" "}
+          <a
+            style={{ color: "#1f6f2e", textDecoration: "none" }}
+            href="https://yordevs.com/"
+          >
+            Yordevs
+          </a>
+        </b>
+      </p>
     </div>
   );
 }

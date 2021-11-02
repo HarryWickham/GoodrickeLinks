@@ -122,9 +122,6 @@ function decodeHTMLEntities(str) {
 
 function dateInfo(eD) {
   var now = new Date();
-  console.log(nowFormat(now, 0));
-  console.log(nowFormat(now, 1));
-  console.log(dateFormat(eD.utc_start_date_details));
   if (eD.all_day) {
     if (nowFormat(now, 0) === dateFormat(eD.utc_start_date_details)) {
       return "Today";
