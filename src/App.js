@@ -32,6 +32,7 @@ const link_holder = {
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
+  width: "100%",
 };
 
 const center_container = {

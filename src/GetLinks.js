@@ -29,7 +29,11 @@ function linkCards(data) {
             key={element.Linktext}
             Linktext={element.Linktext}
             Link={element.Link}
-            ImageURL={element.ImageURL}
+            ImageURL={
+              element.ImageURL != ""
+                ? element.ImageURL
+                : "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F437969157326254081%2FKHXl64x5.png&f=1&nofb=1"
+            }
             alt={element.alt}
           />
         );

@@ -15,7 +15,7 @@ export class GetEvents extends Component {
   render() {
     if (this.state != null) {
       if (this.state.data.total > 0) {
-        return linkCards(this.state.data);
+        return eventCards(this.state.data);
       } else {
         return (
           <div style={eventHolder}>
@@ -29,7 +29,7 @@ export class GetEvents extends Component {
   }
 }
 
-function linkCards(data) {
+function eventCards(data) {
   //https://github.com/Learus/react-material-ui-carousel
   return (
     <Carousel autoPlay={false} animation="slide" style={{ width: "100%" }}>
