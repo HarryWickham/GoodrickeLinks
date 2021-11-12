@@ -54,7 +54,7 @@ const text = {
   maxHeight: "70px",
   flex: 1,
   flexGrow: 1,
-  fontSize: "25px",
+  fontSize: "20px",
   color: "black",
   textAlign: "center",
   paddingRight: "8px",
