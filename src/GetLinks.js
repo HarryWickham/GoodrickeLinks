@@ -23,7 +23,7 @@ export class GetLinks extends Component {
 function linkCards(data) {
   return (
     <>
-      {data.Links.map((element) => {
+      {data.map((element) => {
         return (
           <Link
             key={element.Linktext}
@@ -45,7 +45,7 @@ function linkCards(data) {
 async function loadData() {
   try {
     const result = await fetch(
-      "https://www.goodricke.co.uk/wp-content/uploads/LinkData.json"
+      "https://goodricke-links-api.herokuapp.com/link"
     );
     const data = await result.json();
     return data;
