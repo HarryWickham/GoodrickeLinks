@@ -62,53 +62,54 @@ function Admin() {
             <MdAdd />
           </IconButton>
         ) : (
-          <>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              maxWidth: "500px",
+              width: "95%",
+            }}
+          >
+            <form
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                maxWidth: "500px",
+                width: "100%",
+              }}
+              onSubmit={(e) => {
+                submitNewLink(e);
+              }}
+            >
+              <label>Link Text</label>
+              <input type="text" id="LinkText" required />
+              <label>Link URL</label>
+              <input type="text" id="LinkURL" required />
+              <label>Image URL</label>
+              <input type="text" id="ImageURL" />
+              <label>Image Alt Text</label>
+              <input type="text" id="ImageAlt" />
+
+              <label>&nbsp;</label>
+              <button type="submit">Add Link</button>
+            </form>
             {state == 1 ? (
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  maxWidth: "500px",
-                  width: "95%",
-                }}
-              >
-                <form
+              <></>
+            ) : (
+              <>
+                <div
                   style={{
                     display: "flex",
                     flexDirection: "column",
                     maxWidth: "500px",
-                    width: "100%",
-                  }}
-                  onSubmit={(e) => {
-                    submitNewLink(e);
+                    width: "95%",
                   }}
                 >
-                  <label>Link Text</label>
-                  <input type="text" id="LinkText" required />
-                  <label>Link URL</label>
-                  <input type="text" id="LinkURL" required />
-                  <label>Image URL</label>
-                  <input type="text" id="ImageURL" />
-                  <label>Image Alt Text</label>
-                  <input type="text" id="ImageAlt" />
-
-                  <label>&nbsp;</label>
-                  <button type="submit">Add Link</button>
-                </form>
-              </div>
-            ) : (
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  maxWidth: "500px",
-                  width: "95%",
-                }}
-              >
-                <p>Authentication Falied</p>
-              </div>
+                  <p>Authentication Falied</p>
+                </div>
+              </>
             )}
-          </>
+          </div>
         )}
         <p>Enter Password Before Editing:</p>
         <input type="text" id="password" />
