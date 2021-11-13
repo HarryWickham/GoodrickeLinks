@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import AdminLink from "../components/AdminLink";
 import { MdAdd } from "react-icons/md";
 import IconButton from "@mui/material/IconButton";
 import Async from "react-async";
+const FormData = require("form-data");
 
 function Admin() {
+  const [state, setstate] = useState(0);
   return (
     <div>
       <Async promiseFn={loadLinks}>
@@ -32,14 +34,91 @@ function Admin() {
         }}
       </Async>
       <div style={password}>
-        <IconButton aria-label="add" size="large" onClick={() => {}}>
-          <MdAdd />
-        </IconButton>
+        {state == 0 ? (
+          <IconButton
+            aria-label="add"
+            size="large"
+            onClick={() => {
+              addLink();
+            }}
+          >
+            <MdAdd />
+          </IconButton>
+        ) : (
+          <AddLinkForm />
+        )}
         <p>Enter Password Before Editing:</p>
         <input type="text" id="password" />
       </div>
     </div>
   );
+  function addLink() {
+    setstate(1);
+  }
+}
+
+const AddLinkForm = () => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        maxWidth: "500px",
+        width: "95%",
+      }}
+    >
+      <form
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          maxWidth: "500px",
+          width: "100%",
+        }}
+        onSubmit={(e) => {
+          submitNewLink(e);
+        }}
+      >
+        <label>Link Text</label>
+        <input type="text" id="LinkText" required />
+        <label>Link URL</label>
+        <input type="text" id="LinkURL" required />
+        <label>Image URL</label>
+        <input type="text" id="ImageURL" />
+        <label>Image Alt Text</label>
+        <input type="text" id="ImageAlt" />
+
+        <label>&nbsp;</label>
+        <button type="submit">Add Link</button>
+      </form>
+    </div>
+  );
+};
+
+function submitNewLink(e) {
+  var password = document.getElementById("password").value;
+  var credentials = btoa("USER:" + password);
+  var auth = { Authorization: `Basic ${credentials}` };
+  e.preventDefault();
+  const form = new FormData();
+  form.append("Linktext", document.getElementById("LinkText").value);
+  form.append("Link", document.getElementById("LinkURL").value);
+  form.append("ImageURL", document.getElementById("ImageURL").value);
+  form.append("alt", document.getElementById("ImageAlt").value);
+
+  fetch("https://goodricke-links-api.herokuapp.com/link/", {
+    method: "POST",
+    body: form,
+    headers: auth,
+  })
+    .then((response) => response.json())
+    .then((response) => {
+      console.log(response);
+      if (response.Linktext == document.getElementById("LinkText").value) {
+        console.log("Added " + response.Linktext);
+      } else {
+        console.log("Auth Failed " + response);
+      }
+    });
 }
 
 function linkCards(data) {
