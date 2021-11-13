@@ -8,7 +8,7 @@ function Home() {
   return (
     <div style={holder}>
       <div style={center_container}>
-        <GetEvents style={{ alignItems: "center", display: "flex" }} />
+        <GetEvents />
         <div style={link_holder}>
           <GetLinks />
         </div>

@@ -1,23 +1,22 @@
-import React, { Component } from "react";
+import React from "react";
 import Link from "./components/Link";
 
-export class GetLinks extends Component {
-  async componentDidMount() {
-    try {
-      const data = await loadData();
-      this.setState({ data });
-    } catch (e) {
-      console.log(e);
-    }
-  }
+import Async from "react-async";
 
-  render() {
-    if (this.state != null) {
-      return linkCards(this.state.data);
-    } else {
-      return <div style={eventHolder}>Please Wait...</div>;
-    }
-  }
+function GetLinks() {
+  return (
+    <Async promiseFn={loadLinks}>
+      {({ data, err, isLoading }) => {
+        if (isLoading) return <div style={eventHolder}>Please Wait...</div>;
+        if (err)
+          return (
+            <div style={eventHolder}>Something went wrong: {err.message}</div>
+          );
+
+        if (data) return linkCards(data);
+      }}
+    </Async>
+  );
 }
 
 function linkCards(data) {
@@ -42,18 +41,10 @@ function linkCards(data) {
   );
 }
 
-async function loadData() {
-  try {
-    const result = await fetch(
-      "https://goodricke-links-api.herokuapp.com/link"
-    );
-    const data = await result.json();
-    return data;
-  } catch (e) {
-    console.warn(e);
-  }
-  throw new Error();
-}
+const loadLinks = () =>
+  fetch("https://goodricke-links-api.herokuapp.com/link")
+    .then((res) => (res.ok ? res : Promise.reject(res)))
+    .then((res) => res.json());
 
 const eventHolder = {
   display: "flex",

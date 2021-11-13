@@ -1,32 +1,34 @@
-import React, { Component } from "react";
+import React from "react";
 import Event from "./components/Event";
 import Carousel from "react-material-ui-carousel";
+import Async from "react-async";
 
-export class GetEvents extends Component {
-  async componentDidMount() {
-    try {
-      const data = await loadData();
-      this.setState({ data });
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  render() {
-    if (this.state != null) {
-      if (this.state.data.total > 0) {
-        return eventCards(this.state.data);
-      } else {
-        return (
-          <div style={eventHolder}>
-            Sorry there are no CSA events within the next 7 days
-          </div>
-        );
-      }
-    } else {
-      return <div style={eventHolder}>Please Wait...</div>;
-    }
-  }
+function GetEvents() {
+  return (
+    <Async promiseFn={loadEvents}>
+      {({ data, err, isLoading }) => {
+        if (isLoading) {
+          return <div style={eventHolder}>Please Wait...</div>;
+        }
+        if (err) {
+          return (
+            <div style={eventHolder}>Something went wrong: {err.message}</div>
+          );
+        }
+        if (data) {
+          if (data.total > 0) {
+            return eventCards(data);
+          } else {
+            return (
+              <div style={eventHolder}>
+                Sorry there are no CSA events within the next 7 days
+              </div>
+            );
+          }
+        }
+      }}
+    </Async>
+  );
 }
 
 function eventCards(data) {
@@ -45,19 +47,13 @@ function dateToday() {
   return now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
 }
 
-async function loadData() {
-  try {
-    const result = await fetch(
-      "https://www.goodricke.co.uk/wp-json/tribe/events/v1/events/?page=1&per_page=5&start_date=" +
-        dateToday()
-    );
-    const data = await result.json();
-    return data;
-  } catch (e) {
-    console.warn(e);
-  }
-  throw new Error();
-}
+const loadEvents = () =>
+  fetch(
+    "https://www.goodricke.co.uk/wp-json/tribe/events/v1/events/?page=1&per_page=5&start_date=" +
+      dateToday()
+  )
+    .then((res) => (res.ok ? res : Promise.reject(res)))
+    .then((res) => res.json());
 
 const eventHolder = {
   display: "flex",
