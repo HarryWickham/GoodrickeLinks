@@ -91,7 +91,7 @@ const row = {
   display: "flex",
   flexShrink: 1,
   flexDirection: "row",
-  height: "75px",
+  height: "100px",
   width: "90%",
   maxWidth: "500px",
   border: "1px",
