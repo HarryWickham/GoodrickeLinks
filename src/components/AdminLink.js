@@ -6,32 +6,44 @@ function AdminLink({ Linktext, Link, ImageURL, alt, newLink }) {
   const [state, setstate] = useState(0);
   if (state == 0) {
     return (
-      <div style={wrapper}>
-        <div style={row}>
-          <img src={ImageURL} style={image} alt={alt} />
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <h3 style={text} id={Linktext}>
-              {Linktext}
-            </h3>
-            <p style={{ margin: 0 }}>
-              {" "}
-              Link to: <a href={Link}>{Link}</a>
-            </p>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <div style={wrapper}>
+          <div style={row}>
+            <img src={ImageURL} style={image} alt={alt} />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
+              }}
+            >
+              <h3 style={text} id={Linktext}>
+                {Linktext}
+              </h3>
+            </div>
           </div>
+          {newLink ? (
+            <></>
+          ) : (
+            <IconButton
+              aria-label="delete"
+              size="large"
+              onClick={() => {
+                deleteLink(Linktext);
+              }}
+            >
+              <DeleteIcon />
+            </IconButton>
+          )}
         </div>
-        {newLink ? (
-          <></>
-        ) : (
-          <IconButton
-            aria-label="delete"
-            size="large"
-            onClick={() => {
-              deleteLink(Linktext);
-            }}
-          >
-            <DeleteIcon />
-          </IconButton>
-        )}
+        <p style={{ margin: 0, textAlign: "center", paddingBottom: "16px" }}>
+          Link to: <a href={Link}>{Link}</a>
+        </p>
       </div>
     );
   } else if (state == 1) {
@@ -91,7 +103,7 @@ const row = {
   display: "flex",
   flexShrink: 1,
   flexDirection: "row",
-  height: "130px",
+  height: "70px",
   width: "90%",
   maxWidth: "500px",
   border: "1px",
@@ -104,7 +116,6 @@ const row = {
   margin: "8px",
   background: "white",
   color: "black",
-  wordWrap: "breakWord",
 };
 
 const image = {
