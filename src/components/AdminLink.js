@@ -9,9 +9,15 @@ function AdminLink({ Linktext, Link, ImageURL, alt, newLink }) {
       <div style={wrapper}>
         <div style={row}>
           <img src={ImageURL} style={image} alt={alt} />
-          <h3 style={text} id={Linktext}>
-            {Linktext}
-          </h3>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <h3 style={text} id={Linktext}>
+              {Linktext}
+            </h3>
+            <p style={{ margin: 0 }}>
+              {" "}
+              Link to: <a href={Link}>{Link}</a>
+            </p>
+          </div>
         </div>
         {newLink ? (
           <></>
@@ -85,7 +91,7 @@ const row = {
   display: "flex",
   flexShrink: 1,
   flexDirection: "row",
-  height: "70px",
+  height: "75px",
   width: "90%",
   maxWidth: "500px",
   border: "1px",
@@ -115,6 +121,7 @@ const text = {
   textAlign: "center",
   paddingRight: "8px",
   overflow: "hidden",
+  margin: 0,
 };
 
 export default AdminLink;

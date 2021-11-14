@@ -207,6 +207,10 @@ function Admin() {
           setstate(0);
           setlinksState(1);
           setlinksState(0);
+          setImageAltState();
+          setImageURLState();
+          setLinkURLState();
+          setLinkTextState();
         } else {
           console.log("Auth Failed " + response);
           setstate(2);
