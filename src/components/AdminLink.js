@@ -39,7 +39,7 @@ function AdminLink({ Linktext, Link, ImageURL, alt }) {
     }, 2000);
     return (
       <div style={wrapper}>
-        <p>Authentication Falied</p>
+        <p style={{ color: "red" }}>Authentication Falied</p>
       </div>
     );
   } else if (state == 3) {
@@ -52,7 +52,7 @@ function AdminLink({ Linktext, Link, ImageURL, alt }) {
     var auth = { Authorization: `Basic ${credentials}` };
     fetch(
       "https://goodricke-links-api.herokuapp.com/link/" +
-        encodeURIComponent(Linktext.trim()),
+        encodeURIComponent(Linktext),
       {
         method: "DELETE",
         headers: auth,

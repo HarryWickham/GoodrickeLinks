@@ -3,11 +3,17 @@ import AdminLink from "../components/AdminLink";
 import { MdAdd } from "react-icons/md";
 import IconButton from "@mui/material/IconButton";
 import Async from "react-async";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 const FormData = require("form-data");
 
 function Admin() {
   const [state, setstate] = useState(0);
   const [linksState, setlinksState] = useState(0);
+  const [linkTextState, setLinkTextState] = useState();
+  const [linkURLState, setLinkURLState] = useState();
+  const [imageURLState, setImageURLState] = useState();
+  const [imageAltState, setImageAltState] = useState();
   return (
     <div>
       {linksState == 0 ? (
@@ -70,6 +76,17 @@ function Admin() {
               width: "95%",
             }}
           >
+            <AdminLink
+              Linktext={linkTextState}
+              Link={linkURLState}
+              ImageURL={
+                imageURLState != null
+                  ? imageURLState
+                  : "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F437969157326254081%2FKHXl64x5.png&f=1&nofb=1"
+              }
+              alt={imageAltState}
+              test={true}
+            />
             <form
               style={{
                 display: "flex",
@@ -81,17 +98,53 @@ function Admin() {
                 submitNewLink(e);
               }}
             >
-              <label>Link Text</label>
-              <input type="text" id="LinkText" required />
-              <label>Link URL</label>
-              <input type="text" id="LinkURL" required />
-              <label>Image URL</label>
-              <input type="text" id="ImageURL" />
-              <label>Image Alt Text</label>
-              <input type="text" id="ImageAlt" />
+              <TextField
+                style={{ margin: 10 }}
+                label="Link Text"
+                type="text"
+                id="LinkText"
+                required
+                variant="outlined"
+                onChange={(value) => {
+                  setLinkTextState(value.target.value);
+                }}
+              />
+              <TextField
+                style={{ margin: 10 }}
+                label="Link URL"
+                type="text"
+                id="LinkURL"
+                required
+                variant="outlined"
+                onChange={(value) => {
+                  setLinkURLState(value.target.value);
+                }}
+              />
+              <TextField
+                style={{ margin: 10 }}
+                label="Image URL"
+                type="text"
+                id="ImageURL"
+                variant="outlined"
+                onChange={(value) => {
+                  setImageURLState(value.target.value);
+                }}
+              />
+              <TextField
+                style={{ margin: 10 }}
+                label="Image Alt Text"
+                type="text"
+                id="ImageAlt"
+                variant="outlined"
+                onChange={(value) => {
+                  setImageAltState(value.target.value);
+                }}
+              />
 
               <label>&nbsp;</label>
-              <button type="submit">Add Link</button>
+              <Button variant="outlined" type="submit">
+                Add Link
+              </Button>
             </form>
             {state == 1 ? (
               <></>
@@ -105,14 +158,20 @@ function Admin() {
                     width: "95%",
                   }}
                 >
-                  <p>Authentication Falied</p>
+                  <p style={{ color: "red" }}>Authentication Falied</p>
                 </div>
               </>
             )}
           </div>
         )}
-        <p>Enter Password Before Editing:</p>
-        <input type="text" id="password" />
+        <TextField
+          type="text"
+          id="password"
+          variant="outlined"
+          label="Password"
+          required
+          style={{ margin: 10 }}
+        />
       </div>
     </div>
   );
