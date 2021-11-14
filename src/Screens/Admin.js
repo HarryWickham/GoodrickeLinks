@@ -77,7 +77,7 @@ function Admin() {
               display: "flex",
               flexDirection: "column",
               maxWidth: "500px",
-              width: "95%",
+              width: "100%",
             }}
           >
             <form
@@ -173,7 +173,7 @@ function Admin() {
           variant="outlined"
           label="Password"
           required
-          style={{ margin: 10 }}
+          style={{ margin: 10, maxWidth: "500px", width: "95%" }}
         />
       </div>
     </div>
