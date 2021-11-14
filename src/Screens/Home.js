@@ -1,5 +1,6 @@
 import React from "react";
-
+import { MdSettings } from "react-icons/md";
+import IconButton from "@mui/material/IconButton";
 import Socials from "../components/Socials";
 import GetLinks from "../GetLinks";
 import GetEvents from "../GetEvents";
@@ -14,24 +15,29 @@ function Home() {
         </div>
         <Socials style={{ alignSelf: "end" }} />
       </div>
-      <p style={{ textAlign: "center", margin: "2px" }}>
-        <b>
-          Designed, Developed and Maintained by{" "}
-          <a
-            style={{ color: "#1f6f2e", textDecoration: "none" }}
-            href="mailto:hew550@york.ac.uk"
-          >
-            Harry Wickham
-          </a>{" "}
-          @{" "}
-          <a
-            style={{ color: "#1f6f2e", textDecoration: "none" }}
-            href="https://yordevs.com/"
-          >
-            Yordevs
-          </a>
-        </b>
-      </p>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <p style={{ textAlign: "center", margin: "2px" }}>
+          <b>
+            Designed, Developed and Maintained by{" "}
+            <a
+              style={{ color: "#1f6f2e", textDecoration: "none" }}
+              href="mailto:hew550@york.ac.uk"
+            >
+              Harry Wickham
+            </a>{" "}
+            @{" "}
+            <a
+              style={{ color: "#1f6f2e", textDecoration: "none" }}
+              href="https://yordevs.com/"
+            >
+              Yordevs
+            </a>
+          </b>
+        </p>
+        <IconButton href="/admin">
+          <MdSettings size="20" />
+        </IconButton>
+      </div>
     </div>
   );
 }

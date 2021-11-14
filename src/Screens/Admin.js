@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import AdminLink from "../components/AdminLink";
-import { MdAdd } from "react-icons/md";
+import { MdAdd, MdArrowBack } from "react-icons/md";
 import IconButton from "@mui/material/IconButton";
 import Async from "react-async";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { Link } from "@mui/material";
 const FormData = require("form-data");
 
 function Admin() {
@@ -16,6 +17,9 @@ function Admin() {
   const [imageAltState, setImageAltState] = useState();
   return (
     <div>
+      <IconButton href="/" style={{ padding: "4px" }}>
+        <MdArrowBack size="30" />
+      </IconButton>
       {linksState == 0 ? (
         <Async promiseFn={loadLinks}>
           {({ data, err, isLoading }) => {
