@@ -91,7 +91,7 @@ const row = {
   display: "flex",
   flexShrink: 1,
   flexDirection: "row",
-  height: "100px",
+  height: "130px",
   width: "90%",
   maxWidth: "500px",
   border: "1px",
@@ -104,6 +104,7 @@ const row = {
   margin: "8px",
   background: "white",
   color: "black",
+  wordWrap: "breakWord",
 };
 
 const image = {
