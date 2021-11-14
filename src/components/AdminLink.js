@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 
-function AdminLink({ Linktext, Link, ImageURL, alt }) {
+function AdminLink({ Linktext, Link, ImageURL, alt, newLink }) {
   const [state, setstate] = useState(0);
   if (state == 0) {
     return (
@@ -13,15 +13,19 @@ function AdminLink({ Linktext, Link, ImageURL, alt }) {
             {Linktext}
           </h3>
         </div>
-        <IconButton
-          aria-label="delete"
-          size="large"
-          onClick={() => {
-            deleteLink(Linktext);
-          }}
-        >
-          <DeleteIcon />
-        </IconButton>
+        {newLink ? (
+          <></>
+        ) : (
+          <IconButton
+            aria-label="delete"
+            size="large"
+            onClick={() => {
+              deleteLink(Linktext);
+            }}
+          >
+            <DeleteIcon />
+          </IconButton>
+        )}
       </div>
     );
   } else if (state == 1) {

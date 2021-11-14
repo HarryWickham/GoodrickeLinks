@@ -76,17 +76,6 @@ function Admin() {
               width: "95%",
             }}
           >
-            <AdminLink
-              Linktext={linkTextState}
-              Link={linkURLState}
-              ImageURL={
-                imageURLState != null
-                  ? imageURLState
-                  : "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F437969157326254081%2FKHXl64x5.png&f=1&nofb=1"
-              }
-              alt={imageAltState}
-              test={true}
-            />
             <form
               style={{
                 display: "flex",
@@ -140,7 +129,17 @@ function Admin() {
                   setImageAltState(value.target.value);
                 }}
               />
-
+              <AdminLink
+                Linktext={linkTextState}
+                Link={linkURLState}
+                ImageURL={
+                  imageURLState != null
+                    ? imageURLState
+                    : "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F437969157326254081%2FKHXl64x5.png&f=1&nofb=1"
+                }
+                alt={imageAltState}
+                newLink="true"
+              />
               <label>&nbsp;</label>
               <Button variant="outlined" type="submit">
                 Add Link
