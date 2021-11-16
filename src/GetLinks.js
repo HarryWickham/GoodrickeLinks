@@ -42,7 +42,7 @@ function linkCards(data) {
 }
 
 const loadLinks = () =>
-  fetch("https://linksapi.goodricke.co.uk/link")
+  fetch("http://linksapi.goodricke.co.uk/link")
     .then((res) => (res.ok ? res : Promise.reject(res)))
     .then((res) => res.json());
 
