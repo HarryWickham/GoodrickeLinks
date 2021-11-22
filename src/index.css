@@ -14,7 +14,9 @@ code {
 
 .Carousel-root-1 {
   width: 100% !important;
+  max-width: 560px;
 }
 .jss1 {
   width: 100% !important;
+  max-width: 560px;
 }
