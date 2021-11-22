@@ -42,7 +42,7 @@ function linkCards(data) {
 }
 
 const loadLinks = () =>
-  fetch("http://linksapi.goodricke.co.uk/link")
+  fetch("https://goodricke-links-api.herokuapp.com/link")
     .then((res) => (res.ok ? res : Promise.reject(res)))
     .then((res) => res.json());
 
