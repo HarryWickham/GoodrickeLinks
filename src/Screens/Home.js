@@ -65,6 +65,9 @@ const center_container = {
   flexGrow: 1,
   flexDirection: "column",
   display: "flex",
+  maxwidth: "500px",
+  width: "-webkit-fill-available",
+  alignContent: "center",
 };
 
 export default Home;
