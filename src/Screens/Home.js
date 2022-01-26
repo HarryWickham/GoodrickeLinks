@@ -65,6 +65,7 @@ const center_container = {
   flexGrow: 1,
   flexDirection: "column",
   display: "flex",
+  width: "inherit",
 };
 
 export default Home;
