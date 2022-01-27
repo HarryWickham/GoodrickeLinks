@@ -69,26 +69,28 @@ function AdminLink({ Linktext, Link, ImageURL, alt, newLink }) {
   }
 
   function deleteLink(Linktext) {
-    var password = document.getElementById("password").value;
-    var credentials = btoa("USER:" + password);
-    var auth = { Authorization: `Basic ${credentials}` };
-    fetch(
-      "https://goodricke-links-api.herokuapp.com/link/" +
-        encodeURIComponent(Linktext),
-      {
-        method: "DELETE",
-        headers: auth,
-      }
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        console.log(response.message);
-        if (response.message == "Link deleted.") {
-          setstate(1);
-        } else {
-          setstate(2);
+    if (window.confirm("Are you sure you wish to delete this link?")) {
+      var password = document.getElementById("password").value;
+      var credentials = btoa("USER:" + password);
+      var auth = { Authorization: `Basic ${credentials}` };
+      fetch(
+        "https://goodricke-links-api.herokuapp.com/link/" +
+          encodeURIComponent(Linktext),
+        {
+          method: "DELETE",
+          headers: auth,
         }
-      });
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          console.log(response.message);
+          if (response.message == "Link deleted.") {
+            setstate(1);
+          } else {
+            setstate(2);
+          }
+        });
+    }
   }
 }
 
